@@ -40,7 +40,8 @@ def getArgumentsByVersion(jdkVersion):
     result = []
     if version == 8:
         result += ['-J-Xbootclasspath/p:' + os.environ['CHECKERFRAMEWORK'] + '/checker/dist/javac.jar']
-        result += ['-Xbootclasspath/p:' + os.environ['CHECKERFRAMEWORK'] + '/checker/dist/jdk8.jar']
+        # no longer necessary with Suzanne's changes?
+        # result += ['-Xbootclasspath/p:' + os.environ['CHECKERFRAMEWORK'] + '/checker/dist/jdk8.jar']
         result += ['--release', '8']
     elif version == 11:
         result += ['-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED']

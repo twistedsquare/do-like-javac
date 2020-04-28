@@ -30,9 +30,9 @@ def run(args, javac_commands, jars):
     checker_command += check.getArgumentsByVersion(args.jdkVersion)
 
     if args.cleanCmd is None:
-        print "to run whole-program inference, you must provide a clean command using the --cleanCmd argument"
-        sys.exit(1)
+        pass
     else:
+        # kept for backwards compatibility?
         cleanCmd = shlex.split(args.cleanCmd)
 
     # before invoking the CF for the first time, clean the project
@@ -122,6 +122,8 @@ def run(args, javac_commands, jars):
                     # https://bugs.openjdk.java.net/browse/JDK-8212636.
                     # Use --release instead.
                     k = "-release"
+                if k == "sourcepath" and (v is None or v.strip() == ""):
+                    continue
                 if v is None or v is not False:
                     other_args.append("-" + k)
                 if v is not None and v is not True:
