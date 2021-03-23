@@ -7,6 +7,4 @@ pool:
 
 steps:
 - script: ./run-cf-tests.sh
-  env:
-    SRC_BRANCH=$(Build.SourceBranchName)
   displayName: 'Run the Checker Framework integration test.'
