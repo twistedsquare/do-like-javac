@@ -22,12 +22,12 @@ rm -rf /tmp/"$USER"/checker-framework
 /tmp/"$USER"/plume-scripts/git-clone-related typetools checker-framework /tmp/"$USER"/checker-framework
 export CHECKERFRAMEWORK=/tmp/"$USER"/checker-framework
 
-if [ -n "${BUILD_SOURCEBRANCHNAME+x}" ]; then
-  # if we're running on a local machine, just use the branch name
-  dljc_branch_name=$(git rev-parse --abbrev-ref HEAD)
-else
+if [[ "${BUILD_SOURCEBRANCHNAME+x}" ]]; then
   # on CI, use the BUILD_SOURCEBRANCHNAME variable, which is supplied by Azure
   dljc_branch_name="${BUILD_SOURCEBRANCHNAME}"
+else
+  # if we're running on a local machine, just use the branch name
+  dljc_branch_name=$(git rev-parse --abbrev-ref HEAD)
 fi
 
 ### enforce that the CF is on the same branch that this copy of DLJC is - if git-clone-related's fallback
