@@ -1,7 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
 
 trigger:
 - master
@@ -11,4 +7,6 @@ pool:
 
 steps:
 - script: ./run-cf-tests.sh
+  env:
+    SRC_BRANCH=$(Build.SourceBranchName)
   displayName: 'Run the Checker Framework integration test.'
